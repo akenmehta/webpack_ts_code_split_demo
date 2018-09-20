@@ -1,33 +1,12 @@
 import React from 'react';
-import loadable from 'react-loadable';
 import { BrowserRouter, NavLink as Link, Route, Switch } from 'react-router-dom';
+import About from "./About";
 import { add } from "./add";
-
-// loading view
-const LoadingComponent = () => <h3>please wait...</h3>;
-
-// home component
-
-const AsyncHome = loadable({
-  loader: () => import('./Home'),
-  loading: LoadingComponent
-});
-
-// about component
-const AsyncAbout = loadable({
-  loader: () => import('./About'),
-  loading: LoadingComponent
-});
-
-// contact component
-const AsyncContact = loadable({
-  loader: () => import('./Contact'),
-  loading: LoadingComponent
-});
+import Contact from "./Contact";
+import Home from "./Home";
 
 const handleClick = (num1: number, num2: number) => {
-  // import('./add').then((response: any) => console.log(response.add(num1, num2)));
-  add(num1, num2)
+  console.log(add(num1, num2))
 }
 
 const RouterConfig = () => {
@@ -43,9 +22,9 @@ const RouterConfig = () => {
         <button onClick={() => handleClick(5, 5)}>Click me!</button>
 
         <Switch>
-          <Route exact path="/" component={AsyncHome} />
-          <Route path="/about" component={AsyncAbout} />
-          <Route path="/contact" component={AsyncContact} />
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
         </Switch>
       </div>
     </BrowserRouter>
